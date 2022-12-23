@@ -1,0 +1,17 @@
+
+body{
+  margin: 0;
+  padding: 0;
+}
+.App {
+  text-align: center;
+  background-color: #1c1a1a;
+  display: flex;
+  flex-wrap: wrap;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+
+

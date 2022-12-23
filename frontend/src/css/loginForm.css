@@ -1,0 +1,92 @@
+.bg{
+    background: url("../images/background.png");
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form .titles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 20%;
+}
+
+a{
+    margin: 10px 0;
+    transition: all 500ms;
+}
+
+.title2{
+    color: #8c8888;
+    font-size: 16px;
+}
+
+.title2:hover{
+    color: #7a0404;
+}
+
+.title1{
+    color: #d2cdcd;
+    font-size: 40px;
+}
+
+form{
+    width: 30%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+form input{
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px #8c8888;
+    margin: 20px 0 20px 0;
+    outline: none;
+    background-color: transparent;
+    height: 40px;
+    caret-color:white;
+    transition: 300ms;
+    color: white;
+}
+
+form .inputs{
+    width: 70%;
+}
+
+form button{
+    color: white;
+    width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+form .login{
+    background-color: aqua;
+}
+
+form a{
+    transition: 500ms;
+}
+
+form .login:hover{
+    opacity: 0.85;
+    background-color: #35c5c5;
+}
+
+form input:active{
+    border-color: #045de3;
+}
+form input:focus{
+    border-color: #045de3;
+    transition: 300ms;
+}

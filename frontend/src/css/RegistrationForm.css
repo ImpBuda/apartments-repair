@@ -1,0 +1,13 @@
+form .registration{
+    background-color: #ab0e29;
+}
+
+form button:hover{
+    opacity: 0.85;
+    background-color: #ce113b;
+}
+
+form .title2:hover{
+    color: #7a0404;
+    transition: 500ms;
+}
