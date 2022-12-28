@@ -1,0 +1,20 @@
+.container-wrapper{
+    width: 80%;
+    height: 80vh;
+}
+
+.container-wrapper .header{
+    width: 100%;
+}
+
+.container-wrapper .searctField{
+    width: 50%;
+}
+
+.container-wrapper .searctField fieldset{
+    border-color: white;
+}
+
+.container-wrapper .searctField label{
+    color: white;
+}

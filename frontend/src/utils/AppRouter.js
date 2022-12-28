@@ -4,7 +4,7 @@ import {Context} from "../index";
 import {Route, Routes} from "react-router-dom";
 import {Navigate} from "react-router-dom";
 import {authRoutes, publicRoutes} from "../routes";
-import {LOGIN_ROUTE} from "./consts";
+import {HOME_ROUTE, LOGIN_ROUTE} from "./consts";
 
 
 const AppRouter = observer(() => {

@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom
 import {AddAdvert_ROUTE, HOME_ROUTE, LOGIN_ROUTE, SearchSpecialists_ROUTE} from "../utils/consts";
 import Home from "./Home";
 import SearchSpecialists from "./SearchSpecialists";
-import addAdvert from "./addAdvert";
+import AddAdvert from "./AddAdvert";
 import {observer} from "mobx-react";
 
 const Main = observer(() => {
@@ -16,7 +16,7 @@ const Main = observer(() => {
             <Routes>
                 <Route path={HOME_ROUTE} element={<Home/>}/>
                 <Route path={SearchSpecialists_ROUTE} element={<SearchSpecialists/>}/>
-                <Route path={AddAdvert_ROUTE} element={<addAdvert/>}/>
+                <Route path={AddAdvert_ROUTE} element={<AddAdvert/>}/>
                 <Route path='*' element={<Navigate to={LOGIN_ROUTE}/>}/>}
             </Routes>
         </>

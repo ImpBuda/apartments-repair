@@ -11,7 +11,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import SearchSpecialists from "./components/SearchSpecialists";
-import addAdvert from "./components/addAdvert";
+import AddAdvert from "./components/AddAdvert";
 
 const App = observer(() => {
 
@@ -26,7 +26,7 @@ const App = observer(() => {
                 <Route element={<Main/>}>
                     <Route path={HOME_ROUTE} element={<Home/>}/>
                     <Route path={SearchSpecialists_ROUTE} element={<SearchSpecialists/>}/>
-                    <Route path={AddAdvert_ROUTE} element={<addAdvert/>}/>
+                    <Route path={AddAdvert_ROUTE} element={<AddAdvert/>}/>
                 </Route>
             </Routes>
         </Router>

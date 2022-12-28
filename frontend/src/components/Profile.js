@@ -1,11 +1,12 @@
 import React from 'react';
 
-const AddAdvert = () => {
+const Profile = () => {
+
     return (
         <div>
-            
+
         </div>
     );
 };
 
-export default AddAdvert;
+export default Profile;

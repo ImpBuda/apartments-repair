@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/auth")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AdvertController {
 
     private final AdvertService advertService;

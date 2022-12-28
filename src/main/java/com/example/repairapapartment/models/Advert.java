@@ -5,6 +5,7 @@ import lombok.Data;
 
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,9 +22,6 @@ public class Advert {
     private String title;
     private String description;
     private Integer phone;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate published;
     private String category;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

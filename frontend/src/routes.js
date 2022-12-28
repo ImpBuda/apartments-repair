@@ -1,6 +1,6 @@
 import Login from "./components/Login";
 import Registration from "./components/Registration";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE, HOME_ROUTE} from "./utils/consts";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
 
 export const publicRoutes = [
     {
