@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    background-color: #1c1a1a;
 }
 
 .wrap-img{
@@ -38,7 +39,7 @@
     background: transparent;
     outline: none;
     margin-left: 15px;
-    width: 60%;
+    width: 80%;
     caret-color: white;
     color: white;
 }
@@ -179,5 +180,62 @@
 
 .avatar{
     cursor: pointer;
+}
+
+@media screen and (max-width: 640px)
+and (min-width:321px){
+
+    .search-bar .categories {
+        font-size: 0;
+        width: 20px;
+    }
+
+    .profile-icons {
+        width: 100%;
+        margin: 0 10px 0 10px;
+        justify-content: space-between;
+    }
+
+    .search-bar {
+        width: 70vw;
+    }
+
+    .wrap-img{
+        display: none;
+    }
+    .messages, .favorites{
+        display: none;
+    }
+    .vertLine{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 320px)
+{
+    .search-bar .categories {
+        font-size: 0;
+        width: 20px;
+    }
+
+    .profile-icons {
+        width: 100%;
+        margin: 0 10px 0 10px;
+        justify-content: space-between;
+    }
+
+    .search-bar {
+        width: 70vw;
+    }
+
+    .wrap-img{
+        display: none;
+    }
+    .messages, .favorites{
+        display: none;
+    }
+    .vertLine{
+        display: none;
+    }
 }
 

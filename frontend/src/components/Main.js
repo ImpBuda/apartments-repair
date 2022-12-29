@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from "../layout/Header";
 import SideBar from "../layout/SideBar";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
@@ -8,10 +8,11 @@ import SearchSpecialists from "./SearchSpecialists";
 import AddAdvert from "./AddAdvert";
 import {observer} from "mobx-react";
 
-const Main = observer(() => {
+const Main = observer(({setSearchValue}) => {
+
     return (
         <>
-            <Header/>
+            <Header setSearchValue={setSearchValue}/>
             <SideBar/>
             <Routes>
                 <Route path={HOME_ROUTE} element={<Home/>}/>

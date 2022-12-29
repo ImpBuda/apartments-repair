@@ -1,9 +1,9 @@
 .sideBar{
     width: 20%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #1c1a1a;
 }
 
 .sideBar .title{
@@ -71,5 +71,64 @@
     align-items: center;
     height: 100%;
     width: 100%;
+}
+
+@media screen and (max-width: 1400px)
+and (min-width: 767px){
+
+    .sideBar .menuHome{
+        font-size: 18px;
+    }
+
+    .sideBar .menuItem span{
+        font-size: 16px;
+    }
+
+    .sideBar .menuItem .icon a{
+        justify-content: center;
+    }
+
+    .sideBar .icon{
+        margin: 0 8px 0 8px;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+
+    .sideBar{
+        width: 80px;
+    }
+    .sideBar .title{
+        font-size: 0;
+    }
+
+    .sideBar .menuItem .icon{
+        font-size: 40px;
+
+    }
+
+    .sideBar .menuHome {
+        width: 60px;
+    }
+
+    .sideBar .menuHome .icon{
+        font-size: 40px;
+        margin: 0 auto;
+    }
+
+    .sideBar .menuItem {
+        width: 60px;
+    }
+
+    .sideBar .menuHome span{
+        font-size: 0;
+    }
+
+    .sideBar .menuItem span{
+        font-size: 0;
+    }
+    .sideBar .icon{
+        margin: 0 8px 0 8px;
+    }
 }
 

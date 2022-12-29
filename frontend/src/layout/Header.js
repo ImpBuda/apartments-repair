@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "../css/Header.css"
 import { BiChevronDown, BiMessageRounded } from "react-icons/bi";
 import { BsFillBookmarkFill, BsFillPersonFill } from "react-icons/bs";
@@ -8,15 +8,15 @@ import {Avatar, Badge} from "@mui/material";
 import {observer} from "mobx-react";
 import {Context} from "../index";
 import {Link, useNavigate} from "react-router-dom"
-import {LOGIN_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, SearchSpecialists_ROUTE} from "../utils/consts";
 
 
-const Header = observer(() => {
+const Header = observer(({setSearchValue}) => {
 
     const {user} = useContext(Context)
     const navigate = useNavigate()
 
-    const [searchValue, setSearchValue] = useState("Все категории")
+    const [searchCategory, setSearchCategory] = useState("Все категории")
     const [openSearch, setOpenSearch] = useState(false);
     const [openAvatar, setOpenAvatar] = useState(false);
 
@@ -27,8 +27,6 @@ const Header = observer(() => {
         {text: "Inbox"},
         {text: "Settings"},
     ]
-
-
 
     const logOut = () => {
         user.setIsAuth(false)
@@ -44,24 +42,26 @@ const Header = observer(() => {
                         <ClickAwayListener  onClickAway={() => {setOpenSearch(false)}}>
                             <div className="menu">
                                 <div className="categories" onClick={()=>{setOpenSearch(!openSearch)}}>
-                                    <span>{searchValue}</span>
+                                    <span>{searchCategory}</span>
                                     <div className= {`list-categories ${openSearch? 'active' : 'inactive'}`}><BiChevronDown /></div>
                                 </div>
                                 <div className={`dropdown-menu ${openSearch? 'active' : 'inactive'}`} >
                                     <ul>
                                         {searchItem.map((item) =>(
-                                        <DropdownItem text = {item.text} onClick={()=>{setSearchValue(item.text)}} />
+                                        <DropdownItem text = {item.text} onClick={()=>{setSearchCategory(item.text)}} />
                                             ))}
                                     </ul>
                                 </div>
                             </div>
                         </ClickAwayListener>
-                        <input
+                        <input id="input"
                             placeholder="Поиск..."
                         />
-                        <button type="submit" className="search-button">
-                            <i className="fa fa-search"/>
-                        </button>
+                        <Link to={SearchSpecialists_ROUTE}>
+                            <button type="submit" className="search-button" onClick={() => setSearchValue(document.querySelector("#input"))}>
+                             <i className="fa fa-search"/>
+                            </button>
+                        </Link>
                     </div>
                     <div className="messages"><BiMessageRounded/></div>
                     <div className="favorites"><BsFillBookmarkFill/></div>
@@ -78,7 +78,7 @@ const Header = observer(() => {
                             {user.isAuth ?
                                 <div className={`dropdown-menu ${openAvatar ? 'active' : 'inactive'}`}>
                                     <DropdownItem text="Профиль" icon={<BsFillPersonFill/>}/>
-                                    <DropdownItem text="Выйти" onClick={() => logOut()} icon={<FiLogOut/>}/>
+                                    <DropdownItem text="Выйти" onClick={logOut} icon={<FiLogOut/>}/>
                                 </div>
                                 :
                                 <div className={`dropdown-menu ${openAvatar ? 'active' : 'inactive'}`}>

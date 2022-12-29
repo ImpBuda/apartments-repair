@@ -6,7 +6,6 @@ const Home = () => {
     return (
         <div>
             <input/>
-            <h1>Гуляй</h1>
         </div>
     );
 };

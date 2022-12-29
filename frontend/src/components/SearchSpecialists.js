@@ -1,48 +1,38 @@
-import React from 'react';
-import {CardActions, CardContent, CardMedia, Collapse, IconButton, TextField, Typography} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {Pagination, TextField} from "@mui/material";
 import "../css/searchspecialist.css"
+import {$host} from "../utils/http";
+import Board from "./Board";
 
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import img from "../images/kap.png"
+const SearchSpecialists = (searchValue) => {
 
-const SearchSpecialists = () => {
+    const [searchData, setSearchData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [sort, setSort] = useState("desk");
+
+    useEffect(() => {
+        fetchSearchData();
+        console.log(searchValue)
+    }, [currentPage, sort, searchValue])
+
+    const changePage = (page) => {
+        setCurrentPage(page - 1);
+        window.scrollTo({top: 0, left: 0});
+    }
+
+    const fetchSearchData = async () => {
+        const response = await $host.get("api/auth/search", {params: {title: searchValue.title, pageNumber: currentPage, sortDir: sort?.sortDir}});
+        setSearchData(response.data);
+    }
+
     return (
         <div className="container-wrapper">
-            <div className="header">
-                <TextField className="searctField" id="outlined-basic" label="Поиск" variant="outlined" />
+             <div className="block-cards">
+                    <Board adverts = {searchData.content}/>
+             </div>
+            <div className="pagination">
+                <Pagination sx={{button:{"&:hover":{backgroundColor: 'rgb(0,246,255)'}}}} size="large" color="primary" count={searchData.totalPages} onChange={(e, value) => changePage(value)}/>
             </div>
-            <Card sx={{ maxWidth: 250 }}>
-                <CardHeader
-                    avatar={
-                        <Avatar  aria-label="recipe">R</Avatar>
-                    }
-                    title="Shrimp and Chorizo Paella"
-                    subheader="September 14, 2016"
-                />
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={img}
-                    alt="Paella dish"
-                />
-                <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                        This impressive paella is a perfect party dish and a fun meal to cook
-                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                        if you like.
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                </CardActions>
-            </Card>
         </div>
     );
 };

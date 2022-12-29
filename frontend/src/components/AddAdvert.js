@@ -1,6 +1,7 @@
 import React, {useState}  from 'react';
 import {$authHost} from "../utils/http";
 import "../css/addadvert.css"
+import moment from "moment";
 
 const AddAdvert = () => {
 
@@ -9,11 +10,12 @@ const AddAdvert = () => {
         title:"",
         description:"",
         phone:"",
-        category:""
+        category:"",
+        createTime: Date
     })
 
     const OnInputChange = (e) => {
-        setAdvert({...advert, [e.target.name]: e.target.value })
+        setAdvert({...advert, [e.target.name]: e.target.value, createTime: moment(new Date()).format('DD-MM-YYYY') })
     }
 
     const onChange = (e) => {
@@ -36,6 +38,7 @@ const AddAdvert = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+
             });
         } catch(error) {
             console.log(error)
@@ -43,6 +46,7 @@ const AddAdvert = () => {
     }
     
     return (
+        <div className="wrapper-form">
         <div className="container-form">
             <form className="add-advert">
                 <label className="title">
@@ -74,10 +78,13 @@ const AddAdvert = () => {
                 <label className="files"><span>Фотографии примеров</span>
                     <input
                         onChange={event => onChange(event)}
-                        type="file" multiple/>
+                        type="file" multiple
+                        accept=".jpg,.jpeg,.png"
+                    />
                 </label>
                 <input className="submit" onClick={(e) => handleSubmit(e)} type="submit" value="Submit"/>
             </form>
+        </div>
         </div>
     );
 };

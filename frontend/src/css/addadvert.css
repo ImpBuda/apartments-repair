@@ -1,8 +1,14 @@
 
+.wrapper-form{
+    width: 80%;
+    height: calc(100vh - 110px);
+    background-color: #1c1a1a;
+}
+
 .container-form{
     width: 50%;
     height: 70vh;
-    margin: 100px auto 0 auto;
+    margin: 70px auto 0 auto;
     display: flex;
     justify-content: start;
 
@@ -48,7 +54,7 @@
 }
 
 .container-form .files{
-    width: 40%;
+    width: 60%;
 }
 
 .container-form label span{
@@ -82,4 +88,28 @@ input[type="number"]::-webkit-inner-spin-button {
 .container-form input:focus {
     border-color: #1fe723;
     transition: 300ms;
+}
+
+@media screen and (max-width: 1220px) {
+    .wrapper-form{
+        width: calc(100vw - 80px);
+    }
+}
+
+@media screen and (max-width: 800px)
+and (min-width:320px){
+    .container-form{
+        width: 95%;
+    }
+
+    .container-form label {
+        width: 90%;
+        margin-left: 15px;
+        color: #ccd4dc;
+        font-size: 18px;
+    }
+
+    .container-form .files{
+        width: 90%;
+    }
 }

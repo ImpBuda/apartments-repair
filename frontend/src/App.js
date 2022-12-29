@@ -1,6 +1,6 @@
 import './App.css';
 import Header from "./layout/Header";
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AppRouter from "./utils/AppRouter";
@@ -17,15 +17,21 @@ const App = observer(() => {
 
     const {user} = useContext(Context)
 
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleSearch = (elem) => {
+        setSearchValue(elem.value);
+    }
+
   return (
     <div className="App">
         <Router>
             <Routes>
                 <Route path={LOGIN_ROUTE} element={<Login/>}/>
                 <Route path={REGISTRATION_ROUTE} element={<Registration/>}/>
-                <Route element={<Main/>}>
+                <Route element={<Main setSearchValue={handleSearch}/>}>
                     <Route path={HOME_ROUTE} element={<Home/>}/>
-                    <Route path={SearchSpecialists_ROUTE} element={<SearchSpecialists/>}/>
+                    <Route path={SearchSpecialists_ROUTE} element={<SearchSpecialists searchValue={searchValue}/>}/>
                     <Route path={AddAdvert_ROUTE} element={<AddAdvert/>}/>
                 </Route>
             </Routes>
