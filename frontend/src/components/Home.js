@@ -1,11 +1,9 @@
 import React from 'react';
-import kapImg from "../images/kap.png"
-import komImg from "../images/kom.png"
+import "../css/home.css"
 
 const Home = () => {
     return (
-        <div>
-            <input/>
+        <div className="home">
         </div>
     );
 };

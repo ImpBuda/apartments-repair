@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Registration from "./components/Registration";
 import SearchSpecialists from "./components/SearchSpecialists";
 import AddAdvert from "./components/AddAdvert";
+import Advert from "./components/Advert";
 
 const App = observer(() => {
 
@@ -33,6 +34,7 @@ const App = observer(() => {
                     <Route path={HOME_ROUTE} element={<Home/>}/>
                     <Route path={SearchSpecialists_ROUTE} element={<SearchSpecialists searchValue={searchValue}/>}/>
                     <Route path={AddAdvert_ROUTE} element={<AddAdvert/>}/>
+                    <Route path='/:id' element={<Advert/>}/>
                 </Route>
             </Routes>
         </Router>

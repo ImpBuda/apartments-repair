@@ -3,6 +3,7 @@
     background-color: #1c1a1a;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 .block-cards{

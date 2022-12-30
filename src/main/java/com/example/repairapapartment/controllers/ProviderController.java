@@ -3,10 +3,10 @@ package com.example.repairapapartment.controllers;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import com.example.repairapapartment.DTO.AdvertCardDTO;
-import com.example.repairapapartment.models.Advert;
-import com.example.repairapapartment.models.AdvertImage;
-import com.example.repairapapartment.services.AdvertService;
+import com.example.repairapapartment.DTO.ProviderCardDTO;
+import com.example.repairapapartment.models.Provider;
+import com.example.repairapapartment.models.ProviderImage;
+import com.example.repairapapartment.services.ProviderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,38 +24,38 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class AdvertController {
+public class ProviderController {
 
     @Autowired
     private ModelMapper modelMapper;
 
-    private final AdvertService advertService;
+    private final ProviderService providerService;
 
     @GetMapping("/{id}")
-    public Optional<Advert> getAdvert(@PathVariable Integer id){
-        return advertService.findById(id);
+    public Optional<Provider> getAdvert(@PathVariable Integer id){
+        return providerService.findById(id);
     }
 
     @GetMapping("/getAdverts")
-    public List<Advert> getAdverts(){
-        return advertService.findAll();
+    public List<Provider> getAdverts(){
+        return providerService.findAll();
     }
 
     @PostMapping(value = {"/create"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Void> saveAdvert(@RequestPart Advert advert, @RequestPart MultipartFile[] images){
+    public ResponseEntity<Void> saveAdvert(@RequestPart Provider advert, @RequestPart MultipartFile[] images){
         try{
-            List<AdvertImage> advertImages = new ArrayList<>();
+            List<ProviderImage> advertImages = new ArrayList<>();
 
             for(MultipartFile image: images){
-                AdvertImage advertImage = new AdvertImage(
+                ProviderImage advertImage = new ProviderImage(
                         image.getOriginalFilename(),
                         image.getContentType(),
                         image.getBytes()
                 );
                 advertImages.add(advertImage);
             }
-            advert.setAdvertImages(advertImages);
-            advertService.save(advert);
+            advert.setProviderImages(advertImages);
+            providerService.save(advert);
             return ResponseEntity.ok().build();
         }
         catch(Exception e){
@@ -63,11 +63,11 @@ public class AdvertController {
         }
     }
 
-    Converter<Advert, AdvertCardDTO> converter = new AbstractConverter<>() {
+    Converter<Provider, ProviderCardDTO> converter = new AbstractConverter<>() {
         @Override
-        protected AdvertCardDTO convert(Advert source) {
-            AdvertCardDTO destination = new AdvertCardDTO();
-            List<AdvertImage> sourceSet = source.getAdvertImages();
+        protected ProviderCardDTO convert(Provider source) {
+            ProviderCardDTO destination = new ProviderCardDTO();
+            List<ProviderImage> sourceSet = source.getProviderImages();
 
             destination.setId(source.getId());
             destination.setCategory(source.getCategory());
@@ -82,14 +82,14 @@ public class AdvertController {
     };
 
     @GetMapping("/search")
-    public Page<AdvertCardDTO> getAllAdverts(@RequestParam(defaultValue = "0") Integer pageNumber,
-                                             @RequestParam(defaultValue = "12") Integer pageSize,
-                                             @RequestParam(defaultValue = "desc") String sortDir,
-                                             @RequestParam(required = false) String title){
+    public Page<ProviderCardDTO> getAllAdverts(@RequestParam(defaultValue = "0") Integer pageNumber,
+                                               @RequestParam(defaultValue = "12") Integer pageSize,
+                                               @RequestParam(defaultValue = "desc") String sortDir,
+                                               @RequestParam(required = false) String title){
         modelMapper.addConverter(converter);
 
-        Page<Advert> page = advertService.findAllByQuery(title, pageNumber, pageSize, sortDir);
+        Page<Provider> page = providerService.findAllByQuery(title, pageNumber, pageSize, sortDir);
 
-        return page.map(advert -> modelMapper.map(advert, AdvertCardDTO.class));
+        return page.map(advert -> modelMapper.map(advert, ProviderCardDTO.class));
     }
 }

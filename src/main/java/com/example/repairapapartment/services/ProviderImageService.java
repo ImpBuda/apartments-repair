@@ -1,4 +1,4 @@
 package com.example.repairapapartment.services;
 
-public interface AdvertImageService {
+public interface ProviderImageService {
 }

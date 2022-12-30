@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "advertImage")
+@Table(name = "providerImage")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdvertImage {
+public class ProviderImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "advert_image_seq")
@@ -27,7 +26,7 @@ public class AdvertImage {
     private byte[] imageData;
 
 
-    public AdvertImage(String name, String type, byte[] imageData) {
+    public ProviderImage(String name, String type, byte[] imageData) {
         this.name = name;
         this.type = type;
         this.imageData = imageData;

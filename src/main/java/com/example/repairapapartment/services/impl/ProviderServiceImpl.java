@@ -1,8 +1,8 @@
 package com.example.repairapapartment.services.impl;
 
-import com.example.repairapapartment.models.Advert;
-import com.example.repairapapartment.repositories.AdvertRepository;
-import com.example.repairapapartment.services.AdvertService;
+import com.example.repairapapartment.models.Provider;
+import com.example.repairapapartment.repositories.ProviderRepository;
+import com.example.repairapapartment.services.ProviderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -13,9 +13,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AdvertServiceImpl implements AdvertService {
+public class ProviderServiceImpl implements ProviderService {
 
-    private final AdvertRepository advertRepository;
+    private final ProviderRepository providerRepository;
 
     private static final ExampleMatcher SEARCH_CONDITIONS_MATCH_ALL = ExampleMatcher
             .matching()
@@ -23,37 +23,37 @@ public class AdvertServiceImpl implements AdvertService {
             .withIgnorePaths("id", "description", "phone", "category", "advertImages");
 
     @Override
-    public Page<Advert> findAllByQuery(String title, Integer pageNumber, Integer pageSize, String sortDir){
+    public Page<Provider> findAllByQuery(String title, Integer pageNumber, Integer pageSize, String sortDir){
 
         if(title == null)
             title = "";
 
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.fromString(sortDir), "createTime"));
 
-        Advert advert = Advert.builder()
+        Provider advert = Provider.builder()
                 .title(title)
                 .build();
 
-        Example<Advert> example = Example.of(advert, SEARCH_CONDITIONS_MATCH_ALL);
+        Example<Provider> example = Example.of(advert, SEARCH_CONDITIONS_MATCH_ALL);
 
-        return advertRepository.findAll(example, paging);
+        return providerRepository.findAll(example, paging);
     }
 
-    public List<Advert> findAll(){
-        return advertRepository.findAll();
+    public List<Provider> findAll(){
+        return providerRepository.findAll();
     }
 
     @Override
-    public Optional<Advert> findById(Integer id) {
-        return advertRepository.findById(id);
+    public Optional<Provider> findById(Integer id) {
+        return providerRepository.findById(id);
     }
 
     @Transactional
-    public void save(Advert advert){
-        advertRepository.save(advert);
+    public void save(Provider advert){
+        providerRepository.save(advert);
     }
 
     public void deleteById(Integer id){
-        advertRepository.deleteById(id);
+        providerRepository.deleteById(id);
     }
 }

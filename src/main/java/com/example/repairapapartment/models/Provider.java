@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Advert {
+public class Provider {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "advert_seq")
     private Integer id;
@@ -29,6 +29,6 @@ public class Advert {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "advert_id")
-    private List<AdvertImage> advertImages;
+    private List<ProviderImage> providerImages;
 
 }

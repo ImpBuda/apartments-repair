@@ -7,6 +7,7 @@ import Home from "./Home";
 import SearchSpecialists from "./SearchSpecialists";
 import AddAdvert from "./AddAdvert";
 import {observer} from "mobx-react";
+import Advert from "./Advert";
 
 const Main = observer(({setSearchValue}) => {
 
@@ -18,6 +19,7 @@ const Main = observer(({setSearchValue}) => {
                 <Route path={HOME_ROUTE} element={<Home/>}/>
                 <Route path={SearchSpecialists_ROUTE} element={<SearchSpecialists/>}/>
                 <Route path={AddAdvert_ROUTE} element={<AddAdvert/>}/>
+                <Route path='/:id' element={<Advert/>}/>
                 <Route path='*' element={<Navigate to={LOGIN_ROUTE}/>}/>}
             </Routes>
         </>

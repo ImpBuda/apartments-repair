@@ -1,0 +1,5 @@
+.home{
+    width: 80%;
+    height: calc(100vh - 110px);
+    background-color: #1c1a1a;
+}
