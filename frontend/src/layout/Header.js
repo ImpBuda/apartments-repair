@@ -11,7 +11,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {LOGIN_ROUTE, SearchSpecialists_ROUTE} from "../utils/consts";
 
 
-const Header = observer(({setSearchValue}) => {
+const Header = observer(() => {
 
     const {user} = useContext(Context)
     const navigate = useNavigate()
@@ -22,15 +22,20 @@ const Header = observer(({setSearchValue}) => {
 
     const searchItem = [
         {text: "Все категории"},
-        {text: "My Profile"},
-        {text: "Edit Profile"},
-        {text: "Inbox"},
-        {text: "Settings"},
+        {text: "Косметический"},
+        {text: "Капитальный"}
     ]
 
     const logOut = () => {
         user.setIsAuth(false)
         localStorage.removeItem('token')
+    }
+
+    const setSearch = () => {
+        user.setSearchValue(document.querySelector("#input").value)
+        if(searchCategory === "Все категории")
+            user.setCategory("")
+        else user.setCategory(searchCategory)
     }
 
     return (
@@ -58,7 +63,7 @@ const Header = observer(({setSearchValue}) => {
                             placeholder="Поиск..."
                         />
                         <Link to={SearchSpecialists_ROUTE}>
-                            <button type="submit" className="search-button" onClick={() => setSearchValue(document.querySelector("#input"))}>
+                            <button type="submit" className="search-button" onClick={() => setSearch()}>
                              <i className="fa fa-search"/>
                             </button>
                         </Link>

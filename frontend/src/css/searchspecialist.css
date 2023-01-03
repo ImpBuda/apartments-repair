@@ -30,7 +30,23 @@
     }
 }
 
-@media screen and (max-width: 1400px)
-and (min-width: 767px){
+@media screen and (max-width: 1440px)
+and (min-width: 800px){
+    .container-wrapper{
+        height: 1200px;
+    }
+}
 
+@media screen and (max-width: 800px)
+and (min-width: 560px){
+    .container-wrapper{
+        height: 1900px;
+    }
+}
+
+@media screen and (max-width: 560px)
+{
+    .container-wrapper{
+        height: 3800px;
+    }
 }

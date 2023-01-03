@@ -1,10 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Pagination, TextField} from "@mui/material";
 import "../css/searchspecialist.css"
 import {$host} from "../utils/http";
 import Board from "./Board";
+import {observer} from "mobx-react";
+import {Context} from "../index";
 
-const SearchSpecialists = (searchValue) => {
+const SearchSpecialists = observer(() => {
+
+    const {user} = useContext(Context)
 
     const [searchData, setSearchData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -12,8 +16,7 @@ const SearchSpecialists = (searchValue) => {
 
     useEffect(() => {
         fetchSearchData();
-        console.log(searchValue)
-    }, [currentPage, sort, searchValue])
+    }, [currentPage, sort, user.SearchValue, user.Category])
 
     const changePage = (page) => {
         setCurrentPage(page - 1);
@@ -21,7 +24,7 @@ const SearchSpecialists = (searchValue) => {
     }
 
     const fetchSearchData = async () => {
-        const response = await $host.get("api/auth/search", {params: {title: searchValue.title, pageNumber: currentPage, sortDir: sort?.sortDir}});
+        const response = await $host.get("api/auth/search", {params: {category: user.Category, title: user.SearchValue, pageNumber: currentPage, sortDir: sort?.sortDir}});
         setSearchData(response.data);
     }
 
@@ -35,6 +38,6 @@ const SearchSpecialists = (searchValue) => {
             </div>
         </div>
     );
-};
+});
 
 export default SearchSpecialists;

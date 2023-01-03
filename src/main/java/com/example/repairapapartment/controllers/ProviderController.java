@@ -83,12 +83,13 @@ public class ProviderController {
 
     @GetMapping("/search")
     public Page<ProviderCardDTO> getAllAdverts(@RequestParam(defaultValue = "0") Integer pageNumber,
-                                               @RequestParam(defaultValue = "12") Integer pageSize,
+                                               @RequestParam(defaultValue = "10") Integer pageSize,
                                                @RequestParam(defaultValue = "desc") String sortDir,
-                                               @RequestParam(required = false) String title){
+                                               @RequestParam(required = false) String title,
+                                               @RequestParam(required = false) String category){
         modelMapper.addConverter(converter);
 
-        Page<Provider> page = providerService.findAllByQuery(title, pageNumber, pageSize, sortDir);
+        Page<Provider> page = providerService.findAllByQuery(category, title, pageNumber, pageSize, sortDir);
 
         return page.map(advert -> modelMapper.map(advert, ProviderCardDTO.class));
     }

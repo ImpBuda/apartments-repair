@@ -61,13 +61,13 @@ const AddAdvert = () => {
                     <input
                         type="number"
                         name="phone"
-                        onChange={event => OnInputChange(event)}/>
+                        onChange={event => OnInputChange(event)} />
                 </label>
                 <label>Категория
-                    <input
-                        type="text"
-                        name="category"
-                        onChange={event => OnInputChange(event)}/>
+                    <select className="select-css" name="category" onChange={event => OnInputChange(event)}>
+                        <option>Косметический</option>
+                        <option>Капитальный</option>
+                    </select>
                 </label>
                 <label className="description"><span>Описание</span>
                     <textarea

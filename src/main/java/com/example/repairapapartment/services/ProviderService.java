@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ProviderService {
 
-    Page<Provider> findAllByQuery(String title, Integer pageNumber, Integer pageSize, String sortDir);
+    Page<Provider> findAllByQuery(String category, String title, Integer pageNumber, Integer pageSize, String sortDir);
 
     List<Provider> findAll();
 

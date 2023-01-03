@@ -19,11 +19,12 @@ public class ProviderServiceImpl implements ProviderService {
 
     private static final ExampleMatcher SEARCH_CONDITIONS_MATCH_ALL = ExampleMatcher
             .matching()
+            .withMatcher("category", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
             .withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
-            .withIgnorePaths("id", "description", "phone", "category", "advertImages");
+            .withIgnorePaths("id", "description", "phone", "advertImages");
 
     @Override
-    public Page<Provider> findAllByQuery(String title, Integer pageNumber, Integer pageSize, String sortDir){
+    public Page<Provider> findAllByQuery(String category, String title, Integer pageNumber, Integer pageSize, String sortDir){
 
         if(title == null)
             title = "";
@@ -31,6 +32,7 @@ public class ProviderServiceImpl implements ProviderService {
         Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.fromString(sortDir), "createTime"));
 
         Provider advert = Provider.builder()
+                .category(category)
                 .title(title)
                 .build();
 

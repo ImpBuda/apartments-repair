@@ -62,6 +62,14 @@
     color: #a4a0a0;
 }
 
+.search-bar input:-webkit-autofill,
+.search-bar input:-webkit-autofill:hover,
+.search-bar input:-webkit-autofill:focus{
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0 0 #414141D8 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .search-button{
     justify-self: flex-end;
     height: 100%;
